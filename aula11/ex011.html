@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nacionalidade</title>
+    <style>
+        body {
+            font: normal 18pt Arial;
+        }
+
+        div#area {
+            font: normal 14pt Arial;
+            color: rgba(0, 0, 0, 0.212);
+        }
+    </style>
+</head>
+
+<body>
+    Informe seu país: <input type="text" name="txtpais" id="txtpais">
+    <input type="submit" value="Checar" onclick="checar()">
+    <div id="area">Aguardando preenchimento...</div>
+    <script>
+        function checar() {
+            var pais = window.document.querySelector('input#txtpais').value
+            var ret = window.document.querySelector('div#area')
+            ret.innerHTML = `<p> Vivendo em <strong>${pais}</strong>. </p>`
+            if (pais == 'Brasil') {
+                ret.innerHTML += '<p> Você é <strong> Brasileiro! </strong> </p>'
+                var teste = document.querySelector('strong')  // Essa variável é apenas para pegar a propriedade STRONG
+                ret.style.color = 'Black'
+                teste.style.color = 'Green' // Aqui fará a mudança de cor apenas da palavra que estiver como STRONG
+            } else {
+                ret.innerHTML += '<p> Você é <strong> Estrangeiro! </strong> </p>'
+                var teste = document.querySelector('strong') // Essa variável é apenas para pegar a propriedade STRONG
+                ret.style.color = 'Black'
+                teste.style.color = 'Red' // Aqui fará a mudança de cor apenas da palavra que estiver como STRONG
+            }
+        }
+    </script>
+</body>
+</html>
