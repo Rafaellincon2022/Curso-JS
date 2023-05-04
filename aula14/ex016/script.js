@@ -1,3 +1,5 @@
+
+
 function contar() {
     var inicio = window.document.getElementById('txtinicio')
     var fim = window.document.getElementById('txtfim')
