@@ -1,3 +1,5 @@
+// PRIMEIRA PARTE DO CÓDIGO - Coletar informações e inserir no quadro especificado
+
 let numero = window.document.getElementById('caixa_numero')
 let tela = window.document.getElementById('tabela_selecao')
 let resultado = window.document.querySelector('div#resultado')
@@ -21,66 +23,45 @@ function inLista(num, lista) {
     }
 }
 
+// Função Principal ADICIONAR DADOS 
 function adicionar() {
     if (isNumero(numero.value) && !inLista(numero.value, lista_numeros)) { // Essa ! faz o perfil de negação
-        
+        lista_numeros.push(Number(numero.value))
+        let item = document.createElement('option')
+        item.text = `Valor ${numero.value} adicionado.`
+        tela.appendChild(item)
     } else {
         window.alert('Valor inválido ou já encontrado na lista.')
     }
+    numero.value = '' // Irá limpar o campo para adicionar novo número
+    numero.focus() // Irá manter o curso pronto para uma nova adição
+    window.alert(lista_numeros)
 }
 
- 
+// SEGUNDA PARTE DO CÓDIGO - Analisar os dados coletados e apresentar um relatório
 
-/*
-function adicionar() {
-    let numero = window.document.getElementById('caixa_numero')
-    let resultado = window.document.getElementById('tabela_selecao')
-    let lista_numeros = []
+function finalizar() {
+    // Encontrando o maior valor utilizando uma função nativa
+    let maior_numero = Math.max(...lista_numeros)
 
-    // Condições para checar caixa vazia
-    if (numero.value.length == 0) {
-        window.alert('Informe um valor!')
-    } else {
-        // Verifica se o número está entre 1 e 100
-        if (numero.value < 1 || numero.value > 100) {
-            window.alert('Informe um número entre 1 e 100!')
-        }   else {
-            // Adicionar o valor na lista de números
-            lista_numeros.push(Number(numero.value))
+    // Encontrando o maior valor utilizando uma função nativa
+    let menor_numero = Math.min(...lista_numeros)
 
-            // Criar a caixa de Seleção e adicionar 
-            let item = document.createElement('option')
-            item.text = `Valor ${Number(numero.value)} adicionado.`
-            resultado.appendChild(item)
-
-
-        }
+    // Encontrando a soma dos valores contidos no array
+    let soma = 0
+    for (let posicao = 0; posicao < lista_numeros.length; posicao++) {
+        soma += lista_numeros[posicao];
     }
+
+    // Encontrando a média dos valores contidos na lista
+    let media = soma / lista_numeros.length
+
+    resultado.innerHTML = `Ao todo temos ${lista_numeros.length} números cadastrados. </br>` // Tamanho da lista
+    resultado.innerHTML += `O maior número informado foi ${maior_numero}. </br>` // Maior número da lista
+    resultado.innerHTML += `O menor número informado foi ${menor_numero}. </br>` // Menor número da lista
+    resultado.innerHTML += `A soma de todos os valores informados é ${soma}. </br>` // Soma de todos os valores contidos na lista
+    resultado.innerHTML += `A média de todos os valores informados é ${media}. </br>`
+    resultado.innerHTML += `Esses são os valores informados na lista: ${lista_numeros}.` // Mostra os valores contidos na lista
 }
-*/
-
-/*
-let teste = []
-
-
-function adicionar(valor) {
-    teste.push(valor)
-}
-let numero = [8, 9, 10, 13, 21]
-
-for (let contador = 0; contador < numero.length; contador++) {
-    adicionar(numero[contador])
-    
-}
-
-console.log(teste)
-*/
-
-
-
-
-
-
-
 
 
