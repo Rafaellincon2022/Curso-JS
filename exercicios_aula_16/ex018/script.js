@@ -30,38 +30,62 @@ function adicionar() {
         let item = document.createElement('option')
         item.text = `Valor ${numero.value} adicionado.`
         tela.appendChild(item)
+        resultado.innerHTML = '' // Ele irá limpar a tela para nova análise
     } else {
         window.alert('Valor inválido ou já encontrado na lista.')
     }
     numero.value = '' // Irá limpar o campo para adicionar novo número
     numero.focus() // Irá manter o curso pronto para uma nova adição
-    window.alert(lista_numeros)
 }
 
 // SEGUNDA PARTE DO CÓDIGO - Analisar os dados coletados e apresentar um relatório
 
 function finalizar() {
-    // Encontrando o maior valor utilizando uma função nativa
-    let maior_numero = Math.max(...lista_numeros)
 
-    // Encontrando o maior valor utilizando uma função nativa
-    let menor_numero = Math.min(...lista_numeros)
+    // Verifica se tem algum valor na tabela, senão ele não permite prosseguir
+    if (lista_numeros.length == 0) {
+        window.alert('Sem valores para analisar. Informe um número e tente novamente.')
+    } else {
+        // Encontrando o maior valor utilizando uma função nativa
+        // let maior_numero = Math.max(...lista_numeros)
 
-    // Encontrando a soma dos valores contidos no array
-    let soma = 0
-    for (let posicao = 0; posicao < lista_numeros.length; posicao++) {
-        soma += lista_numeros[posicao];
+        // A forma "manual" de encontrar o maior valor
+        let maior = lista_numeros[0]
+        for (let posicao in lista_numeros) {
+            if (lista_numeros[posicao] > maior)
+            maior = lista_numeros[posicao]
+        }
+
+        // Encontrando o maior valor utilizando uma função nativa
+        // let menor_numero = Math.min(...lista_numeros)
+
+        // A forma "manual" de encontrar o maior valor
+        let menor = lista_numeros[0]
+        for (let posicao in lista_numeros) {
+            if (lista_numeros[posicao] < menor) {
+                menor = lista_numeros[posicao]
+            }
+        }
+
+        // Encontrando a soma dos valores contidos no array
+        let soma = 0
+        for (let posicao = 0; posicao < lista_numeros.length; posicao++) {
+            soma += lista_numeros[posicao];
+        }
+
+        // Encontrando a média dos valores contidos na lista
+        let media = soma / lista_numeros.length
+
+        
+        resultado.innerHTML = `<p> Ao todo temos ${lista_numeros.length} números cadastrados. </p>` // Tamanho da lista
+        resultado.innerHTML += `<p> O maior número informado foi ${maior}. </p>` // Maior número da lista
+        resultado.innerHTML += `<p> O menor número informado foi ${menor}. </p>` // Menor número da lista
+        resultado.innerHTML += `<p> A soma de todos os valores informados é ${soma}. </p>` // Soma de todos os valores contidos na lista
+        resultado.innerHTML += `<p> A média de todos os valores informados é ${media.toFixed(2)}. </p>` // Média de todos os valores contidos na lista
+        resultado.innerHTML += `<p> Esses são os valores informados na lista: ${lista_numeros}. </p>` // Mostra os valores contidos na lista
+
     }
 
-    // Encontrando a média dos valores contidos na lista
-    let media = soma / lista_numeros.length
-
-    resultado.innerHTML = `Ao todo temos ${lista_numeros.length} números cadastrados. </br>` // Tamanho da lista
-    resultado.innerHTML += `O maior número informado foi ${maior_numero}. </br>` // Maior número da lista
-    resultado.innerHTML += `O menor número informado foi ${menor_numero}. </br>` // Menor número da lista
-    resultado.innerHTML += `A soma de todos os valores informados é ${soma}. </br>` // Soma de todos os valores contidos na lista
-    resultado.innerHTML += `A média de todos os valores informados é ${media}. </br>`
-    resultado.innerHTML += `Esses são os valores informados na lista: ${lista_numeros}.` // Mostra os valores contidos na lista
 }
 
 
